@@ -122,7 +122,7 @@ fun TodoItem(item : Todo, onDelete : ()-> Unit) {
             Text(
                 text = item.title,
                 fontSize = 20.sp,
-                color = Color.Yellow
+                color = Color.White
 
             )
         }
