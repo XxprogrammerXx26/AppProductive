@@ -28,7 +28,7 @@ import com.myprimer.appproductive.Modelo.TodoViewModel
 import com.myprimer.appproductive.Pages.Home
 import com.myprimer.appproductive.Pages.Intellectual
 import com.myprimer.appproductive.Pages.Productive
-import com.myprimer.appproductive.Pages.Profile
+
 
 
 
@@ -82,7 +82,7 @@ fun ContentScreen(modifier: Modifier = Modifier, selectedIndex: Int, todoViewMod
         }
         2 -> Intellectual(modifier = modifier, viewModel = todoViewModel)
 
-        3 -> Profile(modifier = modifier, viewModel =todoViewModel )
+ //       3 -> Profile(modifier = modifier, viewModel =todoViewModel )
     }
 }
 

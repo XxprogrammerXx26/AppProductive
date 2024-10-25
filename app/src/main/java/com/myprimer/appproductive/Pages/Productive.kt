@@ -4,8 +4,11 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
@@ -15,6 +18,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -36,106 +40,244 @@ import com.myprimer.appproductive.R
 import java.text.SimpleDateFormat
 import java.util.Locale
 
+//
+//@Composable
+//fun Productive (modifier: Modifier = Modifier, viewModel: TodoViewModel){
+//
+//    val todoList by viewModel.todoList.observeAsState()
+//    var inputText by remember {
+//        mutableStateOf("")
+//    }
+//
+//
+//    Column(
+//
+//        modifier = modifier
+//            .fillMaxSize()
+//            .background(Color(0xFF0000009))
+//            .padding(16.dp),
+//        verticalArrangement = Arrangement.spacedBy(16.dp),
+//        horizontalAlignment = Alignment.CenterHorizontally
+//
+//        //    modifier = Modifier.fillMaxHeight()
+//        //        .padding(8.dp)
+//    ) {
+//
+//        Row(
+//            modifier = Modifier.fillMaxWidth()
+//                .padding(4.dp),
+//            horizontalArrangement = Arrangement.SpaceEvenly
+//        ){
+//            OutlinedTextField(value =inputText , onValueChange = {
+//                inputText = it
+//            })
+//            Button(onClick = {
+//                viewModel.addTodo(inputText)
+//                inputText = ""
+//            }) {
+//                Text(text = "Add")
+//            }
+//        }
+//        todoList?.let {
+//            LazyColumn(
+//                content = {
+//                    itemsIndexed(it){ index: Int, item: Todo ->
+//                        TodoItem(item = item, onDelete = {
+//                            viewModel.deleteTodo(item.id)
+//                        })
+//                    }
+//                }
+//            )
+//
+//        }?: Text(
+//            modifier = Modifier.fillMaxWidth(),
+//            textAlign = TextAlign.Center,
+//            text = "No hay nada Agregado Aun",
+//            fontSize = 16.sp
+//
+//        )
+//    }
+//}
+//
+//
+//
+//
+//
+//
+//
+//@Composable
+//fun TodoItem(item : Todo, onDelete : ()-> Unit) {
+//    Row(
+//        modifier = Modifier.fillMaxWidth()
+//            .padding(8.dp)
+//            .clip(RoundedCornerShape(16.dp))
+//            .background(MaterialTheme.colorScheme.primary) //Cambiar color
+//            .padding(16.dp),
+//        verticalAlignment = Alignment.CenterVertically
+//    ) {
+//        Column(
+//            modifier = Modifier.weight(1f)
+//        ) {
+//            Text(
+//                text = SimpleDateFormat("HH:mm:aa, dd/mm", Locale.ENGLISH).format(item.createdAt),
+//                fontSize = 12.sp,
+//                color = Color.LightGray
+//            )
+//            Text(
+//                text = item.title,
+//                fontSize = 20.sp,
+//                color = Color.White
+//
+//            )
+//        }
+//        IconButton(onClick = onDelete) {
+//            Icon(
+//                painter = painterResource(id = R.drawable.baseline_delete_24),
+//                contentDescription = "delete",
+//                tint = Color.White
+//
+//            )
+//        }
+//    }
+//}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @Composable
-fun Productive (modifier: Modifier = Modifier, viewModel: TodoViewModel){
+fun Productive(modifier: Modifier = Modifier, viewModel: TodoViewModel) {
 
     val todoList by viewModel.todoList.observeAsState()
     var inputText by remember {
         mutableStateOf("")
     }
 
-
     Column(
-
         modifier = modifier
             .fillMaxSize()
-            .background(Color(0xFF0000009))
+            .background(MaterialTheme.colorScheme.background)  // Use theme background
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
-
-        //    modifier = Modifier.fillMaxHeight()
-        //        .padding(8.dp)
     ) {
-
         Row(
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
                 .padding(4.dp),
-            horizontalArrangement = Arrangement.SpaceEvenly
-        ){
-            OutlinedTextField(value =inputText , onValueChange = {
-                inputText = it
-            })
-            Button(onClick = {
-                viewModel.addTodo(inputText)
-                inputText = ""
-            }) {
+            horizontalArrangement = Arrangement.SpaceBetween // Make it look more spaced out
+        ) {
+            OutlinedTextField(
+                value = inputText,
+                onValueChange = { inputText = it },
+                modifier = Modifier.weight(1f).padding(end = 8.dp),  // Adjust padding
+                placeholder = { Text("Add a task...") },  // Professional placeholder
+                maxLines = 1
+            )
+            Button(
+                onClick = {
+                    viewModel.addTodo(inputText)
+                    inputText = ""
+                },
+                shape = RoundedCornerShape(8.dp), // Rounded button corners
+                modifier = Modifier.defaultMinSize(minHeight = 56.dp) // Ensure button height
+            ) {
                 Text(text = "Add")
             }
         }
+
         todoList?.let {
             LazyColumn(
+                verticalArrangement = Arrangement.spacedBy(8.dp),  // Add space between items
                 content = {
-                    itemsIndexed(it){ index: Int, item: Todo ->
+                    itemsIndexed(it) { index: Int, item: Todo ->
                         TodoItem(item = item, onDelete = {
                             viewModel.deleteTodo(item.id)
                         })
                     }
                 }
             )
-
-        }?: Text(
+        } ?: Text(
             modifier = Modifier.fillMaxWidth(),
             textAlign = TextAlign.Center,
-            text = "No hay nada Agregado Aun",
-            fontSize = 16.sp
-
+            text = "No tasks added yet",
+            style = MaterialTheme.typography.bodyMedium,  // Use theme typography
+            color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.6f) // Faint text color
         )
     }
 }
 
-
-
-
-
-
-
 @Composable
-fun TodoItem(item : Todo, onDelete : ()-> Unit) {
-    Row(
-        modifier = Modifier.fillMaxWidth()
-            .padding(8.dp)
-            .clip(RoundedCornerShape(16.dp))
-            .background(MaterialTheme.colorScheme.primary) //Cambiar color
-            .padding(16.dp),
-        verticalAlignment = Alignment.CenterVertically
+fun TodoItem(item: Todo, onDelete: () -> Unit) {
+    Surface(  // Use Surface to manage elevation and background
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(4.dp),
+        shape = RoundedCornerShape(12.dp),
+        color = MaterialTheme.colorScheme.primaryContainer,
+        tonalElevation = 2.dp // Add elevation for a sleek card-like effect
     ) {
-        Column(
-            modifier = Modifier.weight(1f)
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(
-                text = SimpleDateFormat("HH:mm:aa, dd/mm", Locale.ENGLISH).format(item.createdAt),
-                fontSize = 12.sp,
-                color = Color.LightGray
-            )
-            Text(
-                text = item.title,
-                fontSize = 20.sp,
-                color = Color.White
-
-            )
-        }
-        IconButton(onClick = onDelete) {
-            Icon(
-                painter = painterResource(id = R.drawable.baseline_delete_24),
-                contentDescription = "delete",
-                tint = Color.White
-
-            )
+            Column(modifier = Modifier.weight(1f)) {
+                Text(
+                    text = SimpleDateFormat("HH:mm aa, dd/MM", Locale.ENGLISH).format(item.createdAt),
+                    style = MaterialTheme.typography.labelSmall,  // Smaller timestamp
+                    color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.7f)
+                )
+                Spacer(modifier = Modifier.height(4.dp))  // Space between timestamp and title
+                Text(
+                    text = item.title,
+                    style = MaterialTheme.typography.bodyLarge,  // Larger text for title
+                    color = MaterialTheme.colorScheme.onPrimaryContainer
+                )
+            }
+            IconButton(onClick = onDelete) {
+                Icon(
+                    painter = painterResource(id = R.drawable.baseline_delete_24),
+                    contentDescription = "Delete",
+                    tint = MaterialTheme.colorScheme.error  // Highlight delete with error color
+                )
+            }
         }
     }
 }
+
+
+
+
 
 
 

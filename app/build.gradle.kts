@@ -75,6 +75,18 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
 
+
+
+    //Google Services
+    implementation(platform("com.google.firebase:firebase-bom:33.4.0"))
+    implementation ("com.google.firebase:firebase-auth-ktx")
+    implementation ("com.google.android.gms:play-services-auth:20.4.1")
+
+
+
+
+
+
     //ROOM dependencias
     implementation("androidx.room:room-runtime:$room_version")
     annotationProcessor("androidx.room:room-compiler:$room_version")

@@ -49,7 +49,7 @@ fun Intellectual(modifier: Modifier = Modifier, viewModel: TodoViewModel) {
     Column(
         modifier = modifier
             .fillMaxSize()
-            .background(Color(0xFF000000))  // Fondo negro sin transparencia
+            .background(Color(0xFF1CB5E0))  // Fondo negro sin transparencia
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
