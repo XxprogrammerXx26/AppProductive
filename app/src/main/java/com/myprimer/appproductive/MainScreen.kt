@@ -27,62 +27,151 @@ import com.myprimer.appproductive.Modelo.NavItem
 import com.myprimer.appproductive.Modelo.TodoViewModel
 import com.myprimer.appproductive.Pages.Home
 import com.myprimer.appproductive.Pages.Intellectual
+import com.myprimer.appproductive.Pages.IntellectualGameItem
+import com.myprimer.appproductive.Pages.LoginScreen
+
 import com.myprimer.appproductive.Pages.Productive
-
-
 
 
 
 @Composable
 fun MainScreen(modifier: Modifier = Modifier, todoViewModel: TodoViewModel) {
+//
+//    val navItemList = listOf(
+//        NavItem("Home", Icons.Default.Home),
+//        NavItem("Productive", Icons.Default.CheckCircle),
+//        NavItem("Intellectual", Icons.Default.Person),
+//        NavItem("Profile", Icons.Default.AccountCircle),
+//    )
+//
+//    var selectedIndex by remember {
+//        mutableIntStateOf(0)
+//    }
+//
+//    Scaffold(
+//        modifier = Modifier.fillMaxSize(),
+//        bottomBar = {
+//            NavigationBar {
+//                navItemList.forEachIndexed { index, navItem ->
+//                    NavigationBarItem(
+//                        selected = selectedIndex == index,
+//                        onClick = {
+//                            selectedIndex = index
+//                        },
+//                        icon = {
+//                            Icon(imageVector = navItem.icon, contentDescription = "icon")
+//                        },
+//                        label = {
+//                            Text(text = navItem.label)
+//                        }
+//                    )
+//                }
+//            }
+//        }
+//    ) { innerPadding ->
+//        ContentScreen(modifier = Modifier.padding(innerPadding), selectedIndex, todoViewModel)
+//    }
+//}
 
-    val navItemList = listOf(
-        NavItem("Home", Icons.Default.Home),
-        NavItem("Productive", Icons.Default.CheckCircle),
-        NavItem("Intellectual", Icons.Default.Person),
-        NavItem("Profile", Icons.Default.AccountCircle),
-    )
 
-    var selectedIndex by remember {
-        mutableIntStateOf(0)
-    }
 
-    Scaffold(
-        modifier = Modifier.fillMaxSize(),
-        bottomBar = {
-            NavigationBar {
-                navItemList.forEachIndexed { index, navItem ->
-                    NavigationBarItem(
-                        selected = selectedIndex == index,
-                        onClick = {
-                            selectedIndex = index
-                        },
-                        icon = {
-                            Icon(imageVector = navItem.icon, contentDescription = "icon")
-                        },
-                        label = {
-                            Text(text = navItem.label)
-                        }
-                    )
+
+
+
+    // State to determine if user is logged in
+    var isLoggedIn by remember { mutableStateOf(false) }
+
+    if (!isLoggedIn) {
+        // Show the login screen if not logged in
+        LoginScreen(onLoginSuccess = {
+            isLoggedIn = true // Set logged in state
+        })
+    } else {
+        // Navigation items
+        val navItemList = listOf(
+            NavItem("Home", Icons.Default.Home),
+            NavItem("Productive", Icons.Default.CheckCircle),
+            NavItem("Intellectual", Icons.Default.Person),
+            NavItem("Profile", Icons.Default.AccountCircle),
+        )
+
+        var selectedIndex by remember {
+            mutableIntStateOf(0)
+        }
+
+        Scaffold(
+            modifier = Modifier.fillMaxSize(),
+            bottomBar = {
+                NavigationBar {
+                    navItemList.forEachIndexed { index, navItem ->
+                        NavigationBarItem(
+                            selected = selectedIndex == index,
+                            onClick = {
+                                selectedIndex = index
+                            },
+                            icon = {
+                                Icon(imageVector = navItem.icon, contentDescription = "icon")
+                            },
+                            label = {
+                                Text(text = navItem.label)
+                            }
+                        )
+                    }
                 }
             }
+        ) { innerPadding ->
+            ContentScreen(modifier = Modifier.padding(innerPadding), selectedIndex, todoViewModel)
         }
-    ) { innerPadding ->
-        ContentScreen(modifier = Modifier.padding(innerPadding), selectedIndex, todoViewModel)
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @Composable
 fun ContentScreen(modifier: Modifier = Modifier, selectedIndex: Int, todoViewModel: TodoViewModel) {
     when (selectedIndex) {
+
+
         0 -> Home()                                                    //Raiz
         1 -> {
-
             Productive(modifier = modifier, viewModel = todoViewModel)  //Add Rute
         }
         2 -> Intellectual(modifier = modifier, viewModel = todoViewModel)
 
- //       3 -> Profile(modifier = modifier, viewModel =todoViewModel )
+     //   3 -> Profile(modifier = modifier )
+
+
     }
 }
 

@@ -45,7 +45,7 @@ import com.myprimer.appproductive.R
 
 
 @Composable
-fun Intellectual(modifier: Modifier = Modifier, viewModel: TodoViewModel) {
+fun Intellectual(modifier: Modifier = Modifier, viewModel: TodoViewModel ) {
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -77,14 +77,14 @@ fun Intellectual(modifier: Modifier = Modifier, viewModel: TodoViewModel) {
             imageRes = R.drawable.idiomas,
             description ="¡Domina el idioma La repetición espaciada te ayudará a retenerlas para siempre!",
             onClick = {
-                // Acción para iniciar este juego
+
             }
         )
     }
 }
 
 @Composable
-fun IntellectualGameItem(imageRes: Int, description: String, onClick: () -> Unit) {
+fun IntellectualGameItem(imageRes: Int, description: String, onClick:  () -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxWidth()

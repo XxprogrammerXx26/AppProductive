@@ -55,10 +55,12 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.runtime.livedata)
     implementation(libs.androidx.storage)
+    implementation(libs.androidx.ui.test.android)
     val room_version = "2.6.1"
 
 
     implementation(libs.androidx.core.ktx)
+    implementation ("androidx.compose.material3:material3:<latest_version>")
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
