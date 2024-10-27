@@ -11,14 +11,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Build
-import androidx.compose.material.icons.filled.Check
-import androidx.compose.material.icons.filled.Menu
-import androidx.compose.material.icons.filled.Person
-import androidx.compose.material3.Button
-import androidx.compose.material3.Icon
+
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -38,6 +31,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import com.myprimer.appproductive.Modelo.Screen
 import com.myprimer.appproductive.Modelo.TodoViewModel
 import com.myprimer.appproductive.R
 
@@ -45,7 +40,7 @@ import com.myprimer.appproductive.R
 
 
 @Composable
-fun Intellectual(modifier: Modifier = Modifier, viewModel: TodoViewModel ) {
+fun Intellectual( navController:NavController,modifier: Modifier = Modifier, viewModel: TodoViewModel ) {
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -59,7 +54,7 @@ fun Intellectual(modifier: Modifier = Modifier, viewModel: TodoViewModel ) {
             imageRes = R.drawable.puzzles2,
             description = "¡Resuelve acertijos lógicos y desafiantes!",
             onClick = {
-                // Acción para iniciar este juego
+                navController.navigate(Screen.LogicGame.route) // Navigate to Logic Game
             }
         )
 
@@ -68,7 +63,7 @@ fun Intellectual(modifier: Modifier = Modifier, viewModel: TodoViewModel ) {
             imageRes = R.drawable.math1,
             description = "¡Desafía tu mente y agudiza tus habilidades de cálculo!",
             onClick = {
-                // Acción para iniciar este juego
+                navController.navigate(Screen.MathGame.route)// Navigate to Math Game
             }
         )
 
@@ -77,18 +72,72 @@ fun Intellectual(modifier: Modifier = Modifier, viewModel: TodoViewModel ) {
             imageRes = R.drawable.idiomas,
             description ="¡Domina el idioma La repetición espaciada te ayudará a retenerlas para siempre!",
             onClick = {
-
+                navController.navigate(Screen.LanguageGame.route)// Navigate to Language Game
             }
         )
     }
 }
 
+//@Composable
+//fun IntellectualGameItem(imageRes: Int, description: String, onClick:  () -> Unit) {
+//    Column(
+//        modifier = Modifier
+//            .fillMaxWidth()
+//            .clip(RoundedCornerShape(12.dp))  // Bordes suaves
+//            .background(MaterialTheme.colorScheme.primary)
+//            .clickable(onClick = onClick)
+//            .padding(12.dp),
+//        horizontalAlignment = Alignment.CenterHorizontally
+//    ) {
+//        Image(
+//            painter = painterResource(id = imageRes),
+//            contentDescription = null,
+//            modifier = Modifier
+//                .fillMaxWidth()  // Llenar el ancho disponible
+//                .height(150.dp)  // Altura fija para todas las imágenes
+//                .padding(bottom = 8.dp),
+//            contentScale = ContentScale.Fit  // Ajustar la imagen para que se vea completa sin recortes
+//        )
+//        Text(
+//            text = description,
+//            fontSize = 14.sp,  // Tamaño del texto ajustado
+//            color = Color.Yellow
+//        )
+//    }
+//}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @Composable
-fun IntellectualGameItem(imageRes: Int, description: String, onClick:  () -> Unit) {
+fun IntellectualGameItem(imageRes: Int, description: String, onClick: () -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .clip(RoundedCornerShape(12.dp))  // Bordes suaves
+            .clip(RoundedCornerShape(12.dp))
             .background(MaterialTheme.colorScheme.primary)
             .clickable(onClick = onClick)
             .padding(12.dp),
@@ -98,18 +147,28 @@ fun IntellectualGameItem(imageRes: Int, description: String, onClick:  () -> Uni
             painter = painterResource(id = imageRes),
             contentDescription = null,
             modifier = Modifier
-                .fillMaxWidth()  // Llenar el ancho disponible
-                .height(150.dp)  // Altura fija para todas las imágenes
+                .fillMaxWidth()
+                .height(150.dp)
                 .padding(bottom = 8.dp),
-            contentScale = ContentScale.Fit  // Ajustar la imagen para que se vea completa sin recortes
+            contentScale = ContentScale.Fit
         )
         Text(
             text = description,
-            fontSize = 14.sp,  // Tamaño del texto ajustado
+            fontSize = 14.sp,
             color = Color.Yellow
         )
     }
 }
+
+
+
+
+
+
+
+
+
+
 
 
 

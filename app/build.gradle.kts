@@ -56,6 +56,9 @@ dependencies {
     implementation(libs.androidx.runtime.livedata)
     implementation(libs.androidx.storage)
     implementation(libs.androidx.ui.test.android)
+    implementation(libs.firebase.firestore.ktx)
+    implementation(libs.androidx.espresso.core)
+    implementation(libs.androidx.constraintlayout.compose)
     val room_version = "2.6.1"
 
 
@@ -75,7 +78,7 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-
+    implementation ("androidx.compose.material:material-icons-extended:1.6.0")
 
 
 
