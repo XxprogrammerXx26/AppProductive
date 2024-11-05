@@ -79,14 +79,14 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation ("androidx.compose.material:material-icons-extended:1.6.0")
-
+    implementation ("androidx.compose.material:material:1.3.0")
 
 
     //Google Services
     implementation(platform("com.google.firebase:firebase-bom:33.4.0"))
     implementation ("com.google.firebase:firebase-auth-ktx")
     implementation ("com.google.android.gms:play-services-auth:20.4.1")
-
+    implementation ("com.google.firebase:firebase-core:21.0.0")
 
 
 

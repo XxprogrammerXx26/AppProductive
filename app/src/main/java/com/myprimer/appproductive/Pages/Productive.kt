@@ -41,7 +41,7 @@ import java.text.SimpleDateFormat
 import java.util.Locale
 
 
-
+//la utilizamos para definir una parte de la interfaz de usuario.
 @Composable
 fun Productive(modifier: Modifier = Modifier, viewModel: TodoViewModel) {
 

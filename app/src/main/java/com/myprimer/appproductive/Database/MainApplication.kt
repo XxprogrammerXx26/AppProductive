@@ -6,7 +6,7 @@ import android.app.Application
 class MainApplication: Application() {
 
 
-    companion object {
+    companion object {            // acceso global y eficiente a la base de datos de tu aplicación.
         lateinit var  todoDatabase: TodoDatabase
     }
 
@@ -20,3 +20,6 @@ class MainApplication: Application() {
     }
 
 }
+
+
+
